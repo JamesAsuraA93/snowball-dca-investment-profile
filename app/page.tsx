@@ -52,7 +52,7 @@ export default function EasyCompoundingPage() {
   const [baseMonthlyInvestment, setBaseMonthlyInvestment] = useState<number | "">(0) // ขั้นต่ำที่ลงทุนต่อเดือน
   const [growthRate, setGrowthRate] = useState<number | "">(8) // % ผลตอบแทนการลงทุนต่อปี
   const [dividendYield, setDividendYield] = useState<number | "">(5) // % ปันผลต่อปี
-  const [monthlySalary, setMonthlySalary] = useState<number | "">(60000) // เงินเดือนเริ่มต้น
+  const [monthlySalary, setMonthlySalary] = useState<number | "">(100000) // เงินเดือนเริ่มต้น
   const [salaryGrowthRate, setSalaryGrowthRate] = useState<number | "">(5) // % การเพิ่มขึ้นของเงินเดือนต่อปี
   const [salaryGrowthMode, setSalaryGrowthMode] = useState<"linear" | "bellcurve">("linear") // โหมดการเติบโตของเงินเดือน
   const [salaryDeclineRate, setSalaryDeclineRate] = useState<number | "">(3) // % การลดลงของเงินเดือนหลังจากอายุสูงสุด
@@ -131,7 +131,7 @@ export default function EasyCompoundingPage() {
   const numBaseMonthlyInvestment = getNumericValue(baseMonthlyInvestment, 0)
   const numGrowthRate = getNumericValue(growthRate, 8)
   const numDividendYield = getNumericValue(dividendYield, 5)
-  const numMonthlySalary = getNumericValue(monthlySalary, 60000)
+  const numMonthlySalary = getNumericValue(monthlySalary, 100000)
   const numSalaryGrowthRate = getNumericValue(salaryGrowthRate, 5)
   const numSalaryDeclineRate = getNumericValue(salaryDeclineRate, 3)
   const numMaxSalary = getNumericValue(maxSalary, 150000)
@@ -328,7 +328,8 @@ export default function EasyCompoundingPage() {
               variant="outline"
               size="sm"
               onClick={exportToPrint}
-              className="flex items-center gap-2 print:hidden"
+              className="flex items-center gap-2"
+              data-print-hide
             >
               <Download className="h-4 w-4" />
               Print / Save PDF
@@ -340,7 +341,7 @@ export default function EasyCompoundingPage() {
         <div ref={exportRef} className="space-y-6 bg-background">
         
         {/* Input Controls - Hidden when printing */}
-        <Card className="border-2 border-primary/20 print:hidden" data-print-hide>
+        <Card className="border-2 border-primary/20" data-print-hide>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Target className="h-5 w-5" />
@@ -889,7 +890,7 @@ export default function EasyCompoundingPage() {
                     )
                   }}
                 />
-                <ChartLegend content={<ChartLegendContent />} />
+                <ChartLegend content={<ChartLegendContent payload={[]} verticalAlign="bottom" />} />
                 
                 {/* Reference line at crossover point */}
                 {crossoverData && (
@@ -1085,7 +1086,7 @@ export default function EasyCompoundingPage() {
                     )
                   }}
                 />
-                <ChartLegend content={<ChartLegendContent />} />
+                <ChartLegend content={<ChartLegendContent payload={[]} verticalAlign="bottom" />} />
                 
                 {/* Reference line at crossover point */}
                 {crossoverData && (

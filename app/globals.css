@@ -132,11 +132,7 @@
     print-color-adjust: exact !important;
   }
 
-  .print\\:hidden {
-    display: none !important;
-  }
-
-  /* Hide settings card when printing */
+  /* Hide elements when printing */
   [data-print-hide] {
     display: none !important;
   }
